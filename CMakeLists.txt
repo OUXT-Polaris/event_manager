@@ -51,8 +51,8 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   Event.msg
-#   Message1.msg
-#   Message2.msg
+  QueryResult.msg
+  QueryKey.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -135,7 +135,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-set(event_manager_src src/event_manager_node.cpp src/event_manager.cpp)
+set(event_manager_src src/event_manager_node.cpp src/event_manager.cpp src/event_buffer.cpp)
 add_executable(event_manager_node ${event_manager_src})
 target_link_libraries(event_manager_node ${catkin_LIBRARIES})
 
@@ -168,7 +168,17 @@ install(DIRECTORY include
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
 
+foreach(dir msg)
+  install(DIRECTORY ${dir}/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})
+endforeach(dir)
+
 foreach(dir launch)
+  install(DIRECTORY ${dir}/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})
+endforeach(dir)
+
+foreach(dir config)
   install(DIRECTORY ${dir}/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})
 endforeach(dir)

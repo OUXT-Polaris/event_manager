@@ -1,0 +1,2 @@
+event_manager/Event query_target
+duration target_duration
