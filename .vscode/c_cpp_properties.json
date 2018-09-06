@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/masaya-ouxt/catkin_ws/devel/include",
+                "/opt/ros/kinetic/include",
+                "/home/masaya-ouxt/catkin_ws/src/robotx_packages/submodules/cog_publisher/include",
+                "/home/masaya-ouxt/catkin_ws/src/event_manager/include",
+                "/home/masaya-ouxt/catkin_ws/src/robotx_packages/robotx_core/robotx_driver/include",
+                "/home/masaya-ouxt/catkin_ws/src/robotx_packages/robotx_gazebo/include",
+                "/home/masaya-ouxt/catkin_ws/src/robotx_packages/robotx_core/robotx_navigation/include",
+                "/home/masaya-ouxt/catkin_ws/src/robotx_packages/robotx_core/robotx_recognition/include",
+                "/home/masaya-ouxt/catkin_ws/src/robotx_packages/robotx_tools/include",
+                "/usr/include"
+            ],
+            "name": "Linux",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}
