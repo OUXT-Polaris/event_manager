@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <launch>
     <node pkg="event_manager" type="event_manager_node" name="event_manager_node">
+        <rosparam file="$(find event_manager)/config/event_manager_config.yaml" command="load"/>
     </node>
 </launch>

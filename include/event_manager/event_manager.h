@@ -11,8 +11,11 @@ class event_manager
 public:
     event_manager();
     ~event_manager();
-    void run(ros::Duration buffer_length);
+    void run();
     boost::shared_ptr<event_buffer> buffer;
+private:
+    ros::NodeHandle _nh;
+    boost::shared_ptr<ros::Rate> _update_rate;
 };
 
 #endif  //EVENT_MANAGER_H_INCLUDED

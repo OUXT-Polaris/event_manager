@@ -22,10 +22,10 @@ public:
     ~event_buffer();
     void add_event(event event_);
 private:
-    void _update();
+    void _update_buffer();
     std::vector<boost::shared_ptr<event> > _buffer;
     ros::Duration _buffer_length;
-    boost::shared_ptr<boost::mutex> _event_buf_mtx;
+    boost::mutex _event_buf_mtx;
 };
 
 #endif  //EVENT_BUFFER_H_INCLUDED
