@@ -1,10 +1,11 @@
 #include <event_manager/event_buffer.h>
 #include <event_manager/event.h>
 
-event_buffer::event_buffer(ros::Duration buffer_length, boost::shared_ptr<boost::mutex> event_buf_mtx)
+event_buffer::event_buffer(ros::Duration buffer_length)
 {
     _buffer_length = buffer_length;
-    _event_buf_mtx = event_buf_mtx;
+    _event_buf_mtx = boost::make_shared<boost::mutex>();
+    //_event_buf_mtx = event_buf_mtx;
 }
 
 event_buffer::~event_buffer()

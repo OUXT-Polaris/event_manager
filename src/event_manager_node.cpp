@@ -3,9 +3,8 @@
 
 int main(int argc, char *argv[]) {
   ros::init(argc, argv, "event_manager_node");
-  boost::shared_ptr<boost::mutex> event_buf_mtx_ptr = boost::make_shared<boost::mutex>();
   event_manager manager;
-  manager.run(ros::Duration(10.0), event_buf_mtx_ptr);
+  manager.run(ros::Duration(10.0));
   ros::spin();
   return 0;
 }

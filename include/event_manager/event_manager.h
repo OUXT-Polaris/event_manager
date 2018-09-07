@@ -11,8 +11,8 @@ class event_manager
 public:
     event_manager();
     ~event_manager();
-    void run(ros::Duration buffer_length, boost::shared_ptr<boost::mutex> event_buf_mtx);
-private:
+    void run(ros::Duration buffer_length);
+    boost::shared_ptr<event_buffer> buffer;
 };
 
 #endif  //EVENT_MANAGER_H_INCLUDED

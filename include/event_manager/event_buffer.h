@@ -18,7 +18,7 @@
 class event_buffer
 {
 public:
-    event_buffer(ros::Duration buffer_length, boost::shared_ptr<boost::mutex> event_buf_mtx);
+    event_buffer(ros::Duration buffer_length);
     ~event_buffer();
     void add_event(event event_);
 private:
