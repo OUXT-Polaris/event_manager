@@ -35,6 +35,22 @@ event_manager::QueryResult event_buffer::query_event(event_manager::QueryKey key
     return ret;
 }
 
+event_manager::EventStateArray event_buffer::query_event_states(ros::Time min_timestamp, ros::Time max_timestamp)
+{
+    boost::mutex::scoped_lock lock(_event_buf_mtx);
+    std::vector<boost::shared_ptr<event> > fillterd_event_list;
+    event_manager::EventStateArray ret;
+    for(auto itr = _buffer.begin(); itr != _buffer.end(); ++itr)
+    {
+        boost::shared_ptr<event> event_ptr(*itr);
+        if(event_ptr->stamp > min_timestamp && event_ptr->stamp < max_timestamp)
+        {
+            fillterd_event_list.push_back(event_ptr);
+        }
+    }
+    return ret;
+}
+
 void event_buffer::_update_buffer()
 {
     boost::mutex::scoped_lock lock(_event_buf_mtx);

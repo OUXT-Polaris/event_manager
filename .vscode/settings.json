@@ -23,6 +23,7 @@
         "thread": "cpp",
         "cinttypes": "cpp",
         "typeindex": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "csignal": "cpp"
     }
 }
