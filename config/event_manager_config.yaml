@@ -2,3 +2,6 @@
 buffer_length: 10
 # event buffer update Rate[Hz]
 update_rate: 30
+# plugins
+plugins:
+  

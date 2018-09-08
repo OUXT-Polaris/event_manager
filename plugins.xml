@@ -1,0 +1,7 @@
+<library path="lib/livevent_state_plulisher">
+  <class name="event_manager_plugins/event_state_publisher" type="event_manager_plugins::event_state_publisher" base_class_type="event_manager_plugins::base_plugin">
+    <description>
+      A implementation of plulishing event state plugin in event_manager.
+    </description>
+  </class>
+</library>

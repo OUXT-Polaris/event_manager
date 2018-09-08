@@ -51,6 +51,9 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   Event.msg
+  EventState.msg
+  EventStateArray.msg
+  EventStateArrayStamped.msg
   QueryResult.msg
   QueryKey.msg
 )

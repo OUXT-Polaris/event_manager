@@ -19,5 +19,9 @@ void event_manager::run()
     _nh.param<double>(ros::this_node::getName()+"/update_rate", update_rate, 10.0);
     _update_rate = boost::make_shared<ros::Rate>(update_rate);
     buffer = boost::make_shared<event_buffer>(buffer_length);
+    while(ros::ok())
+    {
+        _update_rate->sleep();
+    }
     return;
 }
