@@ -4,6 +4,8 @@
 //headers in this package
 #include <event_manager/event.h>
 #include <event_manager/event_id_list.h>
+#include <event_manager/QueryKey.h>
+#include <event_manager/QueryResult.h>
 
 //headers in ROS
 #include <ros/ros.h>
@@ -21,6 +23,7 @@ public:
     event_buffer(ros::Duration buffer_length);
     ~event_buffer();
     void add_event(event event_);
+    event_manager::QueryResult query_event(event_manager::QueryKey key);
 private:
     void _update_buffer();
     std::vector<boost::shared_ptr<event> > _buffer;

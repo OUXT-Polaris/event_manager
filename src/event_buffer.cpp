@@ -19,6 +19,22 @@ void event_buffer::add_event(event event_)
     return;
 }
 
+event_manager::QueryResult event_buffer::query_event(event_manager::QueryKey key)
+{
+    boost::mutex::scoped_lock lock(_event_buf_mtx);
+    ros::Time min_timestamp = ros::Time::now() - key.target_duration;
+    event_manager::QueryResult ret;
+    for(auto itr = _buffer.begin(); itr != _buffer.end(); ++itr)
+    {
+        boost::shared_ptr<event> event_ptr(*itr);
+        if(event_ptr->stamp > min_timestamp)
+        {
+            ret.stamp.push_back(event_ptr->stamp);
+        }
+    }
+    return ret;
+}
+
 void event_buffer::_update_buffer()
 {
     boost::mutex::scoped_lock lock(_event_buf_mtx);
@@ -32,7 +48,6 @@ void event_buffer::_update_buffer()
             buf.push_back(event_ptr);
         }
     }
-    //_buffer = buf;
-    //_buffer.resize(buf.size());
+    _buffer = buf;
     return;
 }
