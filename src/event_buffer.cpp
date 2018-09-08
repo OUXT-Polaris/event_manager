@@ -1,5 +1,9 @@
+//headers in event_manager
 #include <event_manager/event_buffer.h>
 #include <event_manager/event.h>
+
+//headers in STL
+#include <algorithm>
 
 event_buffer::event_buffer(ros::Duration buffer_length)
 {
@@ -51,15 +55,38 @@ event_manager::EventStateArray event_buffer::query_event_states(ros::Time min_ti
 {
     boost::mutex::scoped_lock lock(_event_buf_mtx);
     event_manager::EventStateArray ret;
+    std::vector<std::string> triggerd_events;
     for(auto itr = _buffer.begin(); itr != _buffer.end(); ++itr)
     {
         boost::shared_ptr<event> event_ptr(*itr);
-        /*
         if(event_ptr->stamp > min_timestamp && event_ptr->stamp < max_timestamp)
         {
-            fillterd_event_list.push_back(event_ptr);
+            if(std::find(triggerd_events.begin(), triggerd_events.end(), event_ptr->key) != triggerd_events.end())
+            {
+                continue;
+            }
+            else
+            {
+                triggerd_events.push_back(event_ptr->key);
+            }
         }
-        */
+    }
+    for(auto event_key_itr = _all_event_keys.begin(); event_key_itr != _all_event_keys.end(); ++event_key_itr)
+    {
+        if(std::find(triggerd_events.begin(), triggerd_events.end(), *event_key_itr) != triggerd_events.end())
+        {
+            event_manager::EventState state;
+            state.event.event_key = *event_key_itr;
+            state.is_triggerd = true;
+            ret.event_states.push_back(state);
+        }
+        else
+        {
+            event_manager::EventState state;
+            state.event.event_key = *event_key_itr;
+            state.is_triggerd = false;
+            ret.event_states.push_back(state);     
+        }
     }
     return ret;
 }

@@ -1,2 +1,2 @@
 Header header
-event_manager/EventStateArray event_states
+event_manager/EventStateArray event_states_array
