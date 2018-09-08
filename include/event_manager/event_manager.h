@@ -17,6 +17,7 @@ public:
 private:
     ros::NodeHandle _nh;
     boost::shared_ptr<ros::Rate> _update_rate;
+    std::vector<std::string> _plugin_names;
 };
 
 #endif  //EVENT_MANAGER_H_INCLUDED

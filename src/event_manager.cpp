@@ -19,6 +19,13 @@ void event_manager::run()
     _nh.param<double>(ros::this_node::getName()+"/update_rate", update_rate, 10.0);
     _update_rate = boost::make_shared<ros::Rate>(update_rate);
     buffer = boost::make_shared<event_buffer>(buffer_length);
+    XmlRpc::XmlRpcValue parameters;
+    _nh.getParam(ros::this_node::getName(), parameters);
+    XmlRpc::XmlRpcValue plugin_params = parameters["plugins"];
+    for(auto plugin_params_itr = plugin_params.begin(); plugin_params_itr != plugin_params.end(); ++plugin_params_itr)
+    {
+        _plugin_names.push_back(plugin_params_itr->first);
+    }
     while(ros::ok())
     {
         _update_rate->sleep();
