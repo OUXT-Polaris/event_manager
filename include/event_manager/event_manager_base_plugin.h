@@ -1,7 +1,10 @@
 #ifndef EVENT_MANAGER_BASE_PLUGIN_H_INCLUDED
 #define EVENT_MANAGER_BASE_PLUGIN_H_INCLUDED
 
+//headers in event_manager
 #include <event_manager/event.h>
+#include <event_manager/QueryKey.h>
+#include <event_manager/QueryResult.h>
 
 #include <boost/optional.hpp> 
 
@@ -14,6 +17,7 @@ namespace event_manager_plugins
         ~base_plugin(){};
         virtual void initialize(){};
         virtual boost::optional<event> get_recent_event(){};
+        virtual event_manager::QueryResult query_event(event_manager::QueryKey key);
     };
 }
 #endif  //EVENT_MANAGER_BASE_PLUGIN_H_INCLUDED

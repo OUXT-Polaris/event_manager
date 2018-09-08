@@ -1,16 +1,16 @@
 #include <event_manager/event_manager.h>
 
-event_manager::event_manager()
+event_manager_core::event_manager_core()
 {
     
 }
 
-event_manager::~event_manager()
+event_manager_core::~event_manager_core()
 {
 
 }
 
-void event_manager::run()
+void event_manager_core::run()
 {
     double buffer_length_time;
     _nh.param<double>(ros::this_node::getName()+"/buffer_length", buffer_length_time, 10.0);

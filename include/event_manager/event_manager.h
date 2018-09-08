@@ -7,11 +7,11 @@
 #include <event_manager/event_manager_base_plugin.h>
 #include <event_manager/event_buffer.h>
 
-class event_manager
+class event_manager_core
 {
 public:
-    event_manager();
-    ~event_manager();
+    event_manager_core();
+    ~event_manager_core();
     void run();
     boost::shared_ptr<event_buffer> buffer;
 private:
