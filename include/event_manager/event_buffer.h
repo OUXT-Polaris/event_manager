@@ -30,6 +30,7 @@ private:
     std::vector<boost::shared_ptr<event> > _buffer;
     ros::Duration _buffer_length;
     boost::mutex _event_buf_mtx;
+    std::vector<std::string> _all_event_keys;
 };
 
 #endif  //EVENT_BUFFER_H_INCLUDED
