@@ -4,7 +4,7 @@
 //headers in pluginlib
 #include <pluginlib/class_list_macros.h>
 
-#include <event_manager/event_manager_base_plugin.h>
+#include <event_manager/plugins/event_manager_base_plugin.h>
 #include <event_manager/event_buffer.h>
 
 class event_manager_core

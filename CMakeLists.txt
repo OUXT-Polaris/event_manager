@@ -142,6 +142,10 @@ set(event_manager_src src/event_manager_node.cpp src/event_manager.cpp src/event
 add_executable(event_manager_node ${event_manager_src})
 target_link_libraries(event_manager_node ${catkin_LIBRARIES})
 
+set(event_state_publisher_plugin_src src/plugins/event_state_publisher_plugin.cpp)
+add_library(event_state_publisher_plugin ${event_state_publisher_plugin_src})
+target_link_libraries(event_state_publisher_plugin ${catkin_LIBRARIES})
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use

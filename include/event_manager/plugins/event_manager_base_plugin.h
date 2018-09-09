@@ -17,7 +17,7 @@ namespace event_manager_plugins
         base_plugin();
         ~base_plugin();
         virtual void initialize(XmlRpc::XmlRpcValue parameters);
-        virtual boost::optional<event> get_recent_event();
+        virtual boost::optional<event> set_recent_event();
         virtual event_manager::QueryResult query_event(event_manager::QueryKey key);
         virtual event_manager::EventStateArray query_event_states();
     };
