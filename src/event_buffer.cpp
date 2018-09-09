@@ -91,7 +91,7 @@ event_manager::EventStateArray event_buffer::query_event_states(ros::Time min_ti
     return ret;
 }
 
-void event_buffer::_update_buffer()
+void event_buffer::update()
 {
     boost::mutex::scoped_lock lock(_event_buf_mtx);
     ros::Time min_timestamp = ros::Time::now() - _buffer_length;

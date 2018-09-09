@@ -25,8 +25,8 @@ public:
     void add_event(event event_);
     event_manager::QueryResult query_event(event_manager::QueryKey key);
     event_manager::EventStateArray query_event_states(ros::Time min_timestamp, ros::Time max_timestamp);
+    void update();
 private:
-    void _update_buffer();
     std::vector<boost::shared_ptr<event> > _buffer;
     ros::Duration _buffer_length;
     boost::mutex _event_buf_mtx;

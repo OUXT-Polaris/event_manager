@@ -32,6 +32,15 @@ void event_manager_core::run()
     }
     while(ros::ok())
     {
+        for(int i=0; i<_plugin_ptrs.size(); i++)
+        {
+            boost::optional<event> event_data = _plugin_ptrs[i]->set_recent_event();
+            if(event_data)
+            {
+                buffer->add_event(*event_data);
+            }
+        }
+        buffer->update();
         _update_rate->sleep();
     }
     return;
