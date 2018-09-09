@@ -1,6 +1,0 @@
-#ifndef EVENT_STATE_PUBLISHER_PLUGIN_H_INCLUDED
-#define EVENT_STATE_PUBLISHER_PLUGIN_H_INCLUDED
-
-#include <event_manager/plugins/event_manager_base_plugins.h>
-
-#endif  //EVENT_STATE_PUBLISHER_PLUGIN_H_INCLUDED
