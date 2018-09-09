@@ -8,7 +8,9 @@ namespace event_manager_plugins
 {
     class event_state_publisher : public base_plugin
     {
-
+        public:
+            event_state_publisher();
+            ~event_state_publisher();
     };
 }
 
