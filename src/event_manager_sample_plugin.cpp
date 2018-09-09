@@ -1,0 +1,1 @@
+#include <event_manager/event_manager_sample_plugin.h>

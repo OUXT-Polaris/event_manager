@@ -22,10 +22,10 @@ void event_manager_core::run()
     XmlRpc::XmlRpcValue parameters;
     _nh.getParam(ros::this_node::getName(), parameters);
     XmlRpc::XmlRpcValue plugin_params = parameters["plugins"];
+    pluginlib::ClassLoader<event_manager_plugins::base_plugin> loader("event_manager","event_manager_plugins::base_plugin");
     for(auto plugin_params_itr = plugin_params.begin(); plugin_params_itr != plugin_params.end(); ++plugin_params_itr)
     {
         _plugin_names.push_back(plugin_params_itr->first);
-        pluginlib::ClassLoader<event_manager_plugins::base_plugin> loader("event_manager","event_manager_plugins::base_plugin");
         boost::shared_ptr<event_manager_plugins::base_plugin> plugin = loader.createInstance("event_manager_plugins::"+plugin_params_itr->first);
         plugin->initialize(plugin_params_itr->second);
         _plugin_ptrs.push_back(plugin);
@@ -34,10 +34,13 @@ void event_manager_core::run()
     {
         for(int i=0; i<_plugin_ptrs.size(); i++)
         {
-            boost::optional<event> event_data = _plugin_ptrs[i]->set_recent_event();
+            boost::optional<std::vector<event> > event_data = _plugin_ptrs[i]->add_events();
             if(event_data)
             {
-                buffer->add_event(*event_data);
+                for(auto event_itr = event_data.get().begin(); event_itr != event_data.get().end(); ++event_itr)
+                {
+                    //buffer->add_event(*event_itr);
+                }
             }
         }
         buffer->update();
