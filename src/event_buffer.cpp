@@ -15,6 +15,17 @@ event_buffer::~event_buffer()
 
 }
 
+std::vector<event> event_buffer::get_events()
+{
+    boost::mutex::scoped_lock lock(_event_buf_mtx);
+    std::vector<event> ret;
+    for(auto event_itr = _buffer.begin(); event_itr != _buffer.end(); event_itr++)
+    {
+        ret.push_back(*event_itr->get());
+    }
+    return ret;
+}
+
 void event_buffer::add_event(event event_)
 {
     boost::mutex::scoped_lock lock(_event_buf_mtx);

@@ -23,6 +23,7 @@ public:
     event_buffer(ros::Duration buffer_length);
     ~event_buffer();
     void add_event(event event_);
+    std::vector<event> get_events();
     event_manager::QueryResult query_event(event_manager::QueryKey key);
     event_manager::EventStateArray query_event_states(ros::Time min_timestamp, ros::Time max_timestamp);
     void update();
