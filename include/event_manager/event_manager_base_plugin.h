@@ -20,9 +20,15 @@ namespace event_manager_plugins
         base_plugin(){};
         ~base_plugin(){};
         virtual void initialize(XmlRpc::XmlRpcValue parameters){};
-        virtual boost::optional<std::vector<event> > add_events(){return boost::none;};
-        //virtual event_manager::QueryResult query_event(event_manager::QueryKey key){};
-        //virtual event_manager::EventStateArray query_event_states(){};
+        virtual std::vector<event> get_events()
+        {
+            std::vector<event> ret = _buffer->get_events();
+            return ret;
+        };
+        void add_event(event event_)
+        {
+            _buffer->add_event(event_);
+        };
     private:
         boost::shared_ptr<event_buffer> _buffer;
     };
