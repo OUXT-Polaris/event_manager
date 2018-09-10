@@ -19,16 +19,23 @@ void event_buffer::add_event(event event_)
 {
     boost::mutex::scoped_lock lock(_event_buf_mtx);
     boost::shared_ptr<event> event_ptr = boost::make_shared<event>(event_);
+    for(int i=0; i<_buffer.size(); i++)
+    {
+        if(_buffer[i]->key == event_.key && _buffer[i]->stamp == event_.stamp)
+        {
+            return;
+        }
+    }
     _buffer.push_back(event_ptr);
-    bool is_exist = false;
+    bool key_is_exist = false;
     for(auto itr = _all_event_keys.begin(); itr != _all_event_keys.end(); ++itr)
     {
         if(*itr != event_.key)
         {
-            is_exist = true;
+            key_is_exist = true;
         }
     }
-    if(is_exist == false)
+    if(key_is_exist == false)
     {
         _all_event_keys.push_back(event_.key);
     }

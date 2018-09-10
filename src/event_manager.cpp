@@ -34,6 +34,7 @@ void event_manager_core::run()
     {
         for(int i=0; i<plugin_ptrs.size(); i++)
         {
+            /*
             boost::optional<std::vector<event> > event_data = plugin_ptrs[i]->add_events();
             if(event_data)
             {
@@ -42,6 +43,7 @@ void event_manager_core::run()
                     buffer->add_event(*event_itr);
                 }
             }
+            */
         }
         buffer->update();
         _update_rate->sleep();
