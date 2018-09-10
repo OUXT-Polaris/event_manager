@@ -26,6 +26,15 @@ std::vector<event> event_buffer::get_events()
     return ret;
 }
 
+void event_buffer::add_events(std::vector<event> events_)
+{
+    for(auto event_itr = events_.begin(); event_itr != events_.end(); event_itr++)
+    {
+        add_event(*event_itr);
+    }
+    return;
+}
+
 void event_buffer::add_event(event event_)
 {
     boost::mutex::scoped_lock lock(_event_buf_mtx);

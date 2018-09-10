@@ -18,8 +18,8 @@ public:
     event_manager_core();
     ~event_manager_core();
     void run();
-    boost::shared_ptr<event_buffer> buffer;
 private:
+    boost::shared_ptr<event_buffer> _buffer;
     ros::NodeHandle _nh;
     boost::shared_ptr<ros::Rate> _update_rate;
     std::vector<std::string> _plugin_names;
