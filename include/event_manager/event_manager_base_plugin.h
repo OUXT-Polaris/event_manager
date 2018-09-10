@@ -29,6 +29,13 @@ namespace event_manager_plugins
         {
             _buffer->add_event(event_);
         };
+        void add_events(std::vector<event> events_)
+        {
+            for(auto event_itr = events_.begin(); event_itr != events_.end(); event_itr++)
+            {
+                _buffer->add_event(*event_itr);
+            }
+        };
     private:
         boost::shared_ptr<event_buffer> _buffer;
     };
