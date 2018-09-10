@@ -20,7 +20,7 @@ namespace event_manager_plugins
         base_plugin(){};
         ~base_plugin(){};
         virtual void initialize(XmlRpc::XmlRpcValue parameters){};
-        virtual boost::optional<std::vector<event> > add_events(){};
+        virtual boost::optional<std::vector<event> > add_events(){return boost::none;};
         //virtual event_manager::QueryResult query_event(event_manager::QueryKey key){};
         //virtual event_manager::EventStateArray query_event_states(){};
     private:

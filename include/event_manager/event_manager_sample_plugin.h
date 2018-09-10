@@ -12,7 +12,7 @@ namespace event_manager_plugins
             event_manager_sample_plugin(){};
             ~event_manager_sample_plugin(){};
             void initialize(XmlRpc::XmlRpcValue parameters){};
-            boost::optional<std::vector<event> > add_events(){return boost::none;};
+            //boost::optional<std::vector<event> > add_events(){return boost::none;};
     };
 }
 

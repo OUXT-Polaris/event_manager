@@ -23,12 +23,12 @@ void event_manager_core::run()
     _nh.getParam(ros::this_node::getName(), parameters);
     XmlRpc::XmlRpcValue plugin_params = parameters["plugins"];
     pluginlib::ClassLoader<event_manager_plugins::base_plugin> loader("event_manager","event_manager_plugins::base_plugin");
+     _plugin_ptrs.clear();
     for(auto plugin_params_itr = plugin_params.begin(); plugin_params_itr != plugin_params.end(); ++plugin_params_itr)
     {
         _plugin_names.push_back(plugin_params_itr->first);
-        boost::shared_ptr<event_manager_plugins::base_plugin> plugin = loader.createInstance("event_manager_plugins::"+plugin_params_itr->first);
-        plugin->initialize(plugin_params_itr->second);
-        _plugin_ptrs.push_back(plugin);
+        _plugin_ptrs.push_back(loader.createInstance("event_manager_plugins::"+plugin_params_itr->first));
+        _plugin_ptrs[_plugin_ptrs.size()-1]->initialize(plugin_params_itr->second);
     }
     while(ros::ok())
     {
@@ -39,7 +39,7 @@ void event_manager_core::run()
             {
                 for(auto event_itr = event_data.get().begin(); event_itr != event_data.get().end(); ++event_itr)
                 {
-                    //buffer->add_event(*event_itr);
+                    buffer->add_event(*event_itr);
                 }
             }
         }
