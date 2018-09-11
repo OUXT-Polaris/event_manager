@@ -2,7 +2,7 @@
 
 event_manager_core::event_manager_core()
 {
-    
+   _event_state_pub = _nh.advertise<event_manager::EventStateArrayStamped>(ros::this_node::getName()+"/event_state", 1);
 }
 
 event_manager_core::~event_manager_core()
@@ -37,6 +37,10 @@ void event_manager_core::run()
             _buffer->add_events(plugin_ptrs[i]->get_events());
         }
         _buffer->update();
+        event_manager::EventStateArrayStamped event_state_msg;
+        event_state_msg.header.stamp = ros::Time::now();
+        event_state_msg.event_states_array = _buffer->query_event_states();
+        _event_state_pub.publish(event_state_msg);
         _update_rate->sleep();
     }
     return;

@@ -8,6 +8,7 @@
 //headers in event_manager
 #include <event_manager/event_manager_base_plugin.h>
 #include <event_manager/event_buffer.h>
+#include <event_manager/EventStateArrayStamped.h>
 
 //headers in boost
 #include <boost/shared_ptr.hpp>
@@ -21,6 +22,7 @@ public:
 private:
     boost::shared_ptr<event_buffer> _buffer;
     ros::NodeHandle _nh;
+    ros::Publisher _event_state_pub;
     boost::shared_ptr<ros::Rate> _update_rate;
     std::vector<std::string> _plugin_names;
 };
