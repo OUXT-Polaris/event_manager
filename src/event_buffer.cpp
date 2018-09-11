@@ -28,6 +28,10 @@ std::vector<event> event_buffer::get_events()
 
 void event_buffer::add_events(std::vector<event> events_)
 {
+    if(events_.size() == 0)
+    {
+        return;
+    }
     for(auto event_itr = events_.begin(); event_itr != events_.end(); event_itr++)
     {
         add_event(*event_itr);

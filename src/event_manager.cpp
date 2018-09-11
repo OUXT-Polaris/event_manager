@@ -28,13 +28,13 @@ void event_manager_core::run()
     {
         _plugin_names.push_back(plugin_params_itr->first);
         plugin_ptrs.push_back(loader.createInstance("event_manager_plugins::"+plugin_params_itr->first));
-        plugin_ptrs[plugin_ptrs.size()-1]->initialize(plugin_params_itr->second);
+        plugin_ptrs[plugin_ptrs.size()-1]->initialize(plugin_params_itr->second, buffer_length);
     }
     while(ros::ok())
     {
         for(int i=0; i<plugin_ptrs.size(); i++)
         {
-            //_buffer->add_events(plugin_ptrs[i]->get_events());
+            _buffer->add_events(plugin_ptrs[i]->get_events());
         }
         _buffer->update();
         _update_rate->sleep();
