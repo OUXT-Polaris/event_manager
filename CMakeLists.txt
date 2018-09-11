@@ -141,10 +141,12 @@ include_directories(
 set(event_manager_src src/event_manager_node.cpp src/event_manager.cpp src/event_buffer.cpp)
 add_executable(event_manager_node ${event_manager_src})
 target_link_libraries(event_manager_node ${catkin_LIBRARIES})
+add_dependencies(event_manager_node event_manager_generate_messages_cpp)
 
 set(event_manager_sample_plugin_src src/event_manager_sample_plugin.cpp src/event_buffer.cpp)
 add_library(event_manager_sample_plugin ${event_manager_sample_plugin_src})
 target_link_libraries(event_manager_sample_plugin ${catkin_LIBRARIES})
+add_dependencies(event_manager_sample_plugin event_manager_generate_messages_cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the

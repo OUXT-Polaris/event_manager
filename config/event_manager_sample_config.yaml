@@ -5,4 +5,4 @@ update_rate: 30
 # plugins
 plugins:
   event_manager_sample_plugin:
-    publish_rate: 10
+    name: event_manager_sample_plugin

@@ -4,15 +4,20 @@
 #include <pluginlib/class_list_macros.h>
 #include <event_manager/event_manager_base_plugin.h>
 
+#include <std_msgs/Empty.h>
+
 namespace event_manager_plugins
 {
     class event_manager_sample_plugin : public base_plugin
     {
         public:
-            event_manager_sample_plugin(){};
-            ~event_manager_sample_plugin(){};
-            void initialize(XmlRpc::XmlRpcValue parameters){};
-            //boost::optional<std::vector<event> > add_events(){return boost::none;};
+            event_manager_sample_plugin();
+            ~event_manager_sample_plugin();
+            void initialize(XmlRpc::XmlRpcValue parameters);
+        private:
+            ros::NodeHandle _nh;
+            ros::Subscriber _topic_sub;
+            void _callback(std_msgs::Empty msg);
     };
 }
 
