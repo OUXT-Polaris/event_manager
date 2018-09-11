@@ -82,6 +82,13 @@ event_manager::QueryResult event_buffer::query_event(event_manager::QueryKey key
     return ret;
 }
 
+event_manager::EventStateArray event_buffer::query_event_states()
+{
+    ros::Time min_timestamp = ros::Time::now() - _buffer_length;
+    event_manager::EventStateArray ret = query_event_states(min_timestamp,ros::Time::now());
+    return ret;
+}
+
 event_manager::EventStateArray event_buffer::query_event_states(ros::Time min_timestamp, ros::Time max_timestamp)
 {
     boost::mutex::scoped_lock lock(_event_buf_mtx);

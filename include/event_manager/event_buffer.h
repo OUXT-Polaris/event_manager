@@ -27,6 +27,7 @@ public:
     std::vector<event> get_events();
     event_manager::QueryResult query_event(event_manager::QueryKey key);
     event_manager::EventStateArray query_event_states(ros::Time min_timestamp, ros::Time max_timestamp);
+    event_manager::EventStateArray query_event_states();
     void update();
 private:
     std::vector<boost::shared_ptr<event> > _buffer;
