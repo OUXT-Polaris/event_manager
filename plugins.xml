@@ -1,5 +1,5 @@
 <library path="lib/libevent_manager_sample_plugin">
-  <class type="event_manager_plugins::event_manager_sample_plugin" base_class_type="event_manager_plugins::base_plugin">
+  <class type="event_manager_plugins::event_manager_sample_plugin" base_class_type="event_manager_base_plugin::base_plugin">
     <description>
       A implementation of sample event_manager plugin
     </description>

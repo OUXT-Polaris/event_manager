@@ -16,10 +16,7 @@ namespace event_manager_plugins
 
     void event_manager_sample_plugin::initialize(XmlRpc::XmlRpcValue parameters)
     {
-        ROS_ERROR_STREAM("hi");
-        std::string topic_name = ros::this_node::getName() + "/" + std::string(parameters["name"]);
-        _topic_sub = _nh.subscribe(topic_name, 1, &event_manager_sample_plugin::_callback, this);
-        return;
+
     }
 
     void event_manager_sample_plugin::_callback(std_msgs::Empty msg)

@@ -34,7 +34,7 @@ void event_manager_core::run()
     XmlRpc::XmlRpcValue parameters;
     _nh.getParam(ros::this_node::getName(), parameters);
     XmlRpc::XmlRpcValue plugin_params = parameters["plugins"];
-    pluginlib::ClassLoader<event_manager_base_plugin::base_plugin> loader("event_manager","event_manager_plugins::base_plugin");
+    pluginlib::ClassLoader<event_manager_base_plugin::base_plugin> loader("event_manager","event_manager_base_plugin::base_plugin");
     std::vector<boost::shared_ptr<event_manager_base_plugin::base_plugin> > plugin_ptrs;
 
     boost::shared_ptr<event_manager_base_plugin::base_plugin> test_plugin = loader.createInstance("event_manager_plugins::event_manager_sample_plugin");
