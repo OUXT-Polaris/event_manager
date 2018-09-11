@@ -14,7 +14,7 @@
 #include <boost/optional.hpp>
 #include <boost/shared_ptr.hpp>
 
-namespace event_manager_plugins
+namespace event_manager_base_plugin
 {
     class base_plugin
     {

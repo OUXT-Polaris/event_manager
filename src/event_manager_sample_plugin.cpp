@@ -6,7 +6,7 @@ namespace event_manager_plugins
 {
     event_manager_sample_plugin::event_manager_sample_plugin()
     {
-        
+
     }
 
     event_manager_sample_plugin::~event_manager_sample_plugin()
@@ -26,3 +26,5 @@ namespace event_manager_plugins
         return;
     }
 }
+
+PLUGINLIB_EXPORT_CLASS(event_manager_plugins::event_manager_sample_plugin, event_manager_base_plugin::base_plugin)

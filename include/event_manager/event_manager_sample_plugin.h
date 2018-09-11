@@ -8,7 +8,7 @@
 
 namespace event_manager_plugins
 {
-    class event_manager_sample_plugin : public base_plugin
+    class event_manager_sample_plugin : public event_manager_base_plugin::base_plugin
     {
         public:
             event_manager_sample_plugin();
@@ -20,7 +20,5 @@ namespace event_manager_plugins
             void _callback(std_msgs::Empty msg);
     };
 }
-
-PLUGINLIB_EXPORT_CLASS(event_manager_plugins::event_manager_sample_plugin, event_manager_plugins::base_plugin)
 
 #endif  //EVENT_MANAGER_SAMPLE_PLUGIN_H_INCLUDED
