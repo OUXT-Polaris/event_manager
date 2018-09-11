@@ -10,6 +10,18 @@ event_manager_core::~event_manager_core()
 
 }
 
+void event_manager_core::_publish_event_state()
+{
+    event_manager::EventStateArrayStamped event_state_msg;
+    while(ros::ok())
+    {
+        event_state_msg.header.stamp = ros::Time::now();
+        event_state_msg.event_states_array = _buffer->query_event_states();
+        _event_state_pub.publish(event_state_msg);
+        _update_rate->sleep();
+    }
+}
+
 void event_manager_core::run()
 {
     double buffer_length_time;
@@ -30,6 +42,7 @@ void event_manager_core::run()
         plugin_ptrs.push_back(loader.createInstance("event_manager_plugins::"+plugin_params_itr->first));
         plugin_ptrs[plugin_ptrs.size()-1]->initialize(plugin_params_itr->second, buffer_length);
     }
+    boost::thread pub_thread(boost::bind(&event_manager_core::_publish_event_state, this));
     while(ros::ok())
     {
         for(int i=0; i<plugin_ptrs.size(); i++)
@@ -37,11 +50,7 @@ void event_manager_core::run()
             _buffer->add_events(plugin_ptrs[i]->get_events());
         }
         _buffer->update();
-        event_manager::EventStateArrayStamped event_state_msg;
-        event_state_msg.header.stamp = ros::Time::now();
-        event_state_msg.event_states_array = _buffer->query_event_states();
-        _event_state_pub.publish(event_state_msg);
-        _update_rate->sleep();
+        ros::spinOnce();
     }
     return;
 }

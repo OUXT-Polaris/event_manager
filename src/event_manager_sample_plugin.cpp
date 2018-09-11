@@ -1,5 +1,7 @@
 #include <event_manager/event_manager_sample_plugin.h>
 
+#include <thread>
+
 namespace event_manager_plugins
 {
     event_manager_sample_plugin::event_manager_sample_plugin()

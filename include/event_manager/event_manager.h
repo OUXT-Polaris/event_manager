@@ -12,6 +12,7 @@
 
 //headers in boost
 #include <boost/shared_ptr.hpp>
+#include <boost/thread.hpp>
 
 class event_manager_core
 {
@@ -20,6 +21,7 @@ public:
     ~event_manager_core();
     void run();
 private:
+    void _publish_event_state();
     boost::shared_ptr<event_buffer> _buffer;
     ros::NodeHandle _nh;
     ros::Publisher _event_state_pub;
