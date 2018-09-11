@@ -19,10 +19,7 @@ namespace event_manager_base_plugin
     class base_plugin
     {
     public:
-        base_plugin()
-        {
-            _buffer = boost::make_shared<event_buffer>(ros::Duration(DEFAULT_BUFFER_LENGTH));
-        };
+        base_plugin(){};
         ~base_plugin(){};
         virtual void initialize(XmlRpc::XmlRpcValue parameters, ros::Duration buffer_length)
         {
